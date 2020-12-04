@@ -17,8 +17,12 @@ if not db.exists("snowcloud:id:pool"):
         db.zadd("snowcloud:id:pool", {i: 0})
 
 
-@app.route("/", methods=["POST"])
+@app.route("/", methods=["GET", "POST"])
 def index():
+    if request.method == "GET":
+        return ("Hey! This is SnowCloud, a supporting service for Snowflake. "
+                "You probably meant to go there instead.")
+
     user = request.args.get("user")
     key = request.args.get("key")
 
