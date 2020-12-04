@@ -56,8 +56,8 @@ def index():
     db.zadd("snowcloud:id:pool", {worker_id: expires})
 
     return jsonify({
-        "worker_id": worker_id,
-        "expires": expires,
+        "worker_id": int(worker_id),
+        "expires": float(expires),
         "ttl": TIME_TO_LIVE
     })
 
