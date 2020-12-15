@@ -20,8 +20,11 @@ if not db.exists("snowcloud:id:pool"):
 @app.route("/", methods=["GET", "POST"])
 def index():
     if request.method == "GET":
-        return ("Hey! This is SnowCloud, a supporting service for Snowflake. "
-                "You probably meant to go there instead.")
+        return (
+            "Hey! This is Snowcloud, a supporting service for "
+            "<a href='https://snowflake.breq.dev/'>Snowflake.</a> "
+            "You probably meant to go there instead."
+        )
 
     user = request.args.get("user")
     key = request.args.get("key")
