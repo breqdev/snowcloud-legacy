@@ -2,7 +2,7 @@ import os
 import time
 
 import redis
-from flask import Flask, request, abort, jsonify
+from flask import Flask, request, abort, jsonify, redirect
 
 app = Flask(__name__)
 db = redis.from_url(os.getenv("REDIS_URL"), decode_responses=True)
@@ -20,11 +20,7 @@ if not db.exists("snowcloud:id:pool"):
 @app.route("/", methods=["GET", "POST"])
 def index():
     if request.method == "GET":
-        return (
-            "Hey! This is Snowcloud, a supporting service for "
-            "<a href='https://snowflake.breq.dev/'>Snowflake.</a> "
-            "You probably meant to go there instead."
-        )
+        return redirect("https://breq.dev/showcase/snowflake")
 
     user = request.args.get("user")
     key = request.args.get("key")
