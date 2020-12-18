@@ -20,7 +20,7 @@ if not db.exists("snowcloud:id:pool"):
 @app.route("/", methods=["GET", "POST"])
 def index():
     if request.method == "GET":
-        return redirect("https://breq.dev/showcase/snowflake")
+        return redirect("https://breq.dev/apps/snowflake")
 
     user = request.args.get("user")
     key = request.args.get("key")
