@@ -7,9 +7,6 @@ from flask import Flask, request, abort, jsonify, redirect
 app = Flask(__name__)
 db = redis.from_url(os.getenv("REDIS_URL"), decode_responses=True)
 
-
-SNOWCLOUD_KEY = os.getenv("SNOWCLOUD_KEY")
-
 TIME_TO_LIVE = 60
 
 if not db.exists("snowcloud:id:pool"):
@@ -30,7 +27,7 @@ def index():
     if not key:
         return abort(403)
 
-    if key != SNOWCLOUD_KEY:
+    if not db.sismember("snowcloud:keys", key):
         return abort(403)
 
     renew = request.args.get("renew")
